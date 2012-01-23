@@ -14,7 +14,7 @@ body {
  
 input, textarea, submit {
 	background: transparent;
-	border: 0;
+	border: 1;
 } 
  
 ol, ul {
