@@ -34,7 +34,7 @@
 				<li <%= is_active_tab? "announcements" %>><%= link_to "Announcements", announcements_path, :class => "icon_star" %></li>
 				<li <%= is_active_tab? "" %>><a href="#" class="icon_stats">My Info</a></li>
 				<li <%= is_active_tab? "events" %>><%= link_to "Events", events_path ,:class => "icon_email" %></li>
-				<li <%= is_active_tab? "" %>><a href="index.html" class="icon_logout">Logout</a></li>
+				<li><%= link_to "Logout", destroy_user_session_path, :class => "icon_logout" %></li>
 			</ul><!-- Main Navigation End -->
 		</div><!-- Userbar End -->
 		<div class="clear"></div>

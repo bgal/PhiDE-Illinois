@@ -14,6 +14,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    authorize! :read, @event
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
+    authorize! :create, @event
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,16 +37,18 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    authorize! :update, @event
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+    authorize! :create, @event
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, :notice => 'Event was successfully created.' }
+        format.html { redirect_to events_path, :notice => 'Event was successfully created.' }
         format.json { render :json => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
@@ -57,10 +61,11 @@ class EventsController < ApplicationController
   # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
+    authorize! :update, @event
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, :notice => 'Event was successfully updated.' }
+        format.html { redirect_to events_path, :notice => 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -73,6 +78,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
+    authorize! :destroy, @event
     @event.destroy
 
     respond_to do |format|
@@ -82,13 +88,13 @@ class EventsController < ApplicationController
   end
   
   def load
-    @events = Event.where(:start_date => Time.at(params[:start].to_i).to_date..Time.at(params[:end].to_i).to_date)
+    authorize! :read, :events
+    @events = Event.where(:start_at => Time.at(params[:start].to_i).to_date..Time.at(params[:end].to_i).to_date)
     @ret = [ ]
     @events.each do |event|
-      options = {:title => event.name, :start => event.start_date, :end => event.end_date }
-      options[:url] = event_path(event) if can? :manage, :events
+      options = {:title => event.title, :start => event.start_at, :end => event.end_at, :url => event_path(event) }
       options[:color] = '#FF0000' if event.mandatory
-      @ret.push(event)
+      @ret.push(options)
     end
     respond_to do |format|
       format.json { render :json => @ret }

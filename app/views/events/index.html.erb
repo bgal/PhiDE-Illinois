@@ -12,6 +12,7 @@ $(document).ready(function(){
           window.location.href = event.url
    }
   });
+  <% if can? :manage, :events %>
   var space = document.createElement('span');
   space.className = "fc-header-space";
   var new_event_button = document.createElement('span');
@@ -21,5 +22,6 @@ $(document).ready(function(){
   $('.fc-header-right').prepend(space);
   $('.fc-header-right').prepend(new_event_button);
   $('.fc-content').addClass("calendar");
+  <% end %>
 });
 </script>
