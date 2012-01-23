@@ -1043,6 +1043,7 @@ div.information .hide_btn:hover {
 	background: url('/assets/loginbox_username.png') repeat;
 }
 
+
 #loginbox #password_field {
 	width: 250px;
 	height:36px;
@@ -1057,6 +1058,7 @@ div.information .hide_btn:hover {
 	text-shadow: 1px 1px 0px #000000;
 	color: #ffffff;
 	overflow: hidden;
+	border: 0;
 }
 
 #loginbox #buttonline {

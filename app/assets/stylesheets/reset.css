@@ -14,8 +14,12 @@ body {
  
 input, textarea, submit {
 	background: transparent;
-	border: 0;
+	border: 1;
 } 
+
+input.login-form {
+	border: 0;
+}
  
 ol, ul {
 	list-style: none;
