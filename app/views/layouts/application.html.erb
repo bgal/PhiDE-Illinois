@@ -11,7 +11,7 @@
 
 	<div id="main" class="container_12"><!-- Body Wrapper Begin -->
 		<div id="header"><!-- Header Begin -->
-			<div class="grid_3"><a href="#" id="logo" class="float_left">myPhiDe</a></div>
+			<div class="grid_3"><%= link_to "Announcements", announcements_path, :id => "logo", :class => "float_left" %></div>
 			<div class="grid_4 push_5">
 
 			</div>
@@ -24,10 +24,10 @@
 				</div>
 				<div id="profileinfo">
 					<h3 id="username">Brian Gallagher</h3>
-					<span id="subline">Administrator</span>
+					<span id="subline"><%= "Administrator" if current_user.admin %></span>
 					<div class="clear"></div>
-					<a href="#" class="profilebutton">Profile</a>
-					<a href="#" class="profilebutton">Logout</a>
+					<%= link_to "My Info", announcements_path, :class => "profilebutton" %>
+					<%= link_to "Logout", destroy_user_session_path, :class => "profilebutton", :method => :delete %>
 				</div>
 			</div><!-- Userbar End -->
 			<ul id="navigation"><!-- Main Navigation Begin -->
