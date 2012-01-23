@@ -16,6 +16,7 @@ gem 'json'
 
 gem 'devise'
 gem 'event-calendar', :require => 'event_calendar'
+gem 'cancan'
 
 # Gems used only for assets and not required
 # in production environments by default.

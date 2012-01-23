@@ -1,8 +1,19 @@
 class AnnouncementsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => :public
+  
+  def public
+    @announcements = Announcement.where(:public => true)
+    
+    respond_to do |format|
+      format.html # public_announcements.html.erb
+      format.json { render :json => @announcements }
+    end
+  end
+  
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.where(:public => false)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +36,8 @@ class AnnouncementsController < ApplicationController
   # GET /announcements/new.json
   def new
     @announcement = Announcement.new
-
+    @announcement.author = current_user
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @announcement }
