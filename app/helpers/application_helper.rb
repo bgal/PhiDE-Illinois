@@ -10,4 +10,8 @@ module ApplicationHelper
     return "success" if name == :notice
     return "information"
   end
+  
+  def is_active_tab?(accepted_controllers)
+    return 'class="activepage"'.html_safe if accepted_controllers.include? params[:controller]
+  end
 end

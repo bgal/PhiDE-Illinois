@@ -36,7 +36,6 @@ class AnnouncementsController < ApplicationController
   # GET /announcements/new.json
   def new
     @announcement = Announcement.new
-    @announcement.author = current_user
     
     respond_to do |format|
       format.html # new.html.erb
@@ -53,6 +52,7 @@ class AnnouncementsController < ApplicationController
   # POST /announcements.json
   def create
     @announcement = Announcement.new(params[:announcement])
+    @announcement.author = current_user
 
     respond_to do |format|
       if @announcement.save

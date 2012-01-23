@@ -4,4 +4,8 @@ class Announcement < ActiveRecord::Base
   def author
     user
   end
+  
+  def author=(new_author)
+    user = new_author
+  end
 end

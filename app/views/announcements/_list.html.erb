@@ -1,18 +1,24 @@
 <div class="announcements">
-  <% @announcements.each do |announcement| %>
-    <%= generate_block announcement.title do %>
-      <div class="announcement">
-          <p><%= announcement.body %></p>
-          <small>Created by <%= announcement.user.name unless announcement.user.nil? %> on <%= announcement.created_at.strftime("%m-%d-%y") %></small>
-          <% if can? :manage, announcement %>
-            <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
-          <% end %>
-      </div>
+  <% if @announcements.count == 0 %>
+    <%= generate_block "There are currently no announcments" do %>
+      Check back later for more information
     <% end %>
-    <div class="clear">
+  <% else %>
+    <% @announcements.each do |announcement| %>
+      <%= generate_block announcement.title do %>
+        <div class="announcement">
+            <p><%= announcement.body %></p>
+            <small>Created by <%= announcement.user.name unless announcement.user.nil? %> on <%= announcement.created_at.strftime("%m-%d-%y") %></small>
+            <% if can? :manage, announcement %>
+              <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if can? :create, Announcement %>
+    <div class="clear"></div>
+    <%= link_to content_tag(:span, 'New Post', :class => "icon_plus"), new_announcement_path, :class => "navbutton" %>
+    
   <% end %>
 </div>
-<% if can? :create, Announcement %>
-  <br />
-  <%= link_to content_tag(:span, 'New Post', :class => "icon_plus"), new_announcement_path, :class => "navbutton" %>
-<% end %>

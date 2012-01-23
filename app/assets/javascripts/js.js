@@ -28,7 +28,7 @@ $(document).ready(function() {
 	$('.table tr:even').addClass('even'); /* ODD/EVEN TABLEROW CLASS */
 	$('.data-table').dataTable({"sDom": '<"data-table-top"<"data-table-entries"l><"data-table-search"f>><"clear"><"table-wrap"rt><"clear"><"data-table-bottom"<"float_left"i><"float_right"p>><"clear">', "bJQueryUI": true}); /* DATA TABLES */
 	
-	$('.form').validationEngine(); /* VALIDATION ENGINE */
+	// $('.form').validationEngine(); /* VALIDATION ENGINE */
 	
 	$('.tipTop').tipsy({gravity: 's', fade: true}); /* TOOLTIP CLASS */
 	$('.tipBot').tipsy({gravity: 'n', fade: true}); /* TOOLTIP CLASS */
