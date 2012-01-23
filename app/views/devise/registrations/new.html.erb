@@ -1,3 +1,8 @@
+<style>
+#loginbox #password_field {
+  margin:0;
+}
+</style>
 <h2>Sign Up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
@@ -9,11 +14,14 @@
   <div id="username_field">
   <%= f.text_field :name, :placeholder => 'Name' %></div>
 
-  <div id="password_field" class="login-form">
+  <div id="password_field">
   <%= f.password_field :password, :placeholder => 'Password' %></div>
 
-  <div id="password_field" value="Confirm Password">
+  <div id="password_field">
   <%= f.password_field :password_confirmation, :placeholder => 'Confirm Password' %></div>
+  
+  <div id="username_field">
+  <%= f.text_field :access_code, :placeholder => 'Access Code' %></div>
 
 <div id="buttonline">
   <input type="submit" id="loginbutton" class="float_left width_4" value="Sign Up"><% f.submit %>
