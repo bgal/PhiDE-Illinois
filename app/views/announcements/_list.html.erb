@@ -3,15 +3,16 @@
     <%= generate_block announcement.title do %>
       <div class="announcement">
           <p><%= announcement.body %></p>
-          <small>Created by Scott on <%= announcement.created_at %></small>
+          <small>Created by <%= announcement.user.name unless announcement.user.nil? %> on <%= announcement.created_at.strftime("%m-%d-%y") %></small>
           <% if can? :manage, announcement %>
             <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
           <% end %>
       </div>
     <% end %>
+    <div class="clear">
   <% end %>
 </div>
 <% if can? :create, Announcement %>
   <br />
-  <%= link_to 'New Announcement', new_announcement_path %>
+  <%= link_to content_tag(:span, 'New Post', :class => "icon_plus"), new_announcement_path, :class => "navbutton" %>
 <% end %>

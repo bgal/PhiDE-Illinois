@@ -59,5 +59,12 @@ module Testapp
     # Forces application to not access DB or load models when precompiling assets
     # Suggested by Devise for when deploying to heroku
     config.assets.initialize_on_precompile = false
+    
+    # Set the layouts to the 'login' for all the Devise controllers
+    config.to_prepare { 
+      Devise::SessionsController.layout "login"
+      Devise::PasswordsController.layout "login"
+      Devise::RegistrationsController.layout "login"
+    }
   end
 end
