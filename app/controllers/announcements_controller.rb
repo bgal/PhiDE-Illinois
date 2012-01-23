@@ -1,5 +1,5 @@
 class AnnouncementsController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => :index
+  skip_before_filter :authenticate_user!, :only => :public
   
   def public
     @announcements = Announcement.where(:public => true)

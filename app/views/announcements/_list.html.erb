@@ -1,21 +1,12 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Public</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @announcements.each do |announcement| %>
-  <tr>
-    <td><%= announcement.title %></td>
-    <td><%= announcement.body %></td>
-    <td><%= announcement.public %></td>
-    <td><%= link_to 'Show', announcement %></td>
-    <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
-    <td><%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div class="announcements">
+  <% @announcements.each do |announcement| %>
+  <div class="announcement">
+      <h1><%= announcement.title %></h1>
+      <small>Created by Scott on <%= announcement.created_at %></small>
+      <p><%= announcement.body %></p>
+      <%= link_to 'Show', announcement %> | <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
+  </div>
+  <% end %>
+</div>
+<br />
+<%= link_to 'New Announcement', new_announcement_path %>
