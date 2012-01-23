@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   private
   def access_code_is_legit
-    errors.add(:base,"Access Code is Invalid") unless @access_code == valid_access_code
+    errors.add(:base,"Access Code is Invalid") unless id.nil? && @access_code == valid_access_code
   end
   
   def valid_access_code
