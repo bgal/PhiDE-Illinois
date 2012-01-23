@@ -5,7 +5,8 @@ Testapp::Application.routes.draw do
   match 'events/load(.:format)' => "events#load"
   match 'users/list' => "users#list", :as => "user_list"
   match 'user' => "users#show", :as => "current_user"
-  match 'users/:id/hours/edit' => "users#edit_hours", :as => "edit_user_hours"
+  match 'users/:id/edit' => "users#edit", :as => "edit_user"
+  match 'users/:id' => "users#update", :via => :put, :as => "update_user"
 
   resources :announcements
   resources :events

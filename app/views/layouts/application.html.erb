@@ -71,7 +71,7 @@
 			  <% if user_signed_in? %>
   				<li <%= is_active_tab? "announcements" %>><%= link_to "Announcements", announcements_path, :class => "icon_star" %></li>
   				<% if current_user.admin? %>
-  				  <li <%= is_active_tab? "" %>><%= link_to "Edit Hours", user_list_path, :class => "icon_stats" %></li>
+  				  <li <%= is_active_tab? "" %>><%= link_to "Members", user_list_path, :class => "icon_stats" %></li>
   				<% end %>
   				<li <%= is_active_tab? "events" %>><%= link_to "Events", events_path ,:class => "icon_email" %></li>
   			  <li><%= link_to "Logout", destroy_user_session_path, :class => "icon_logout", :method => :delete %></li>

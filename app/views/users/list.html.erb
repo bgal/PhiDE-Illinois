@@ -1,2 +1,24 @@
-<h1>Users#list</h1>
-<p>Find me in app/views/users/list.html.erb</p>
+<%= generate_block "Users" do %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Date Registered</th>
+        <th>Administrator?</th>
+        <th>Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.email, edit_user_path(user) %></td>
+          <td><%= link_to user.name, edit_user_path(user) unless user.name.nil? %></td>
+          <td><%= user.created_at.strftime("%m-%d-%Y") %></td>
+          <td><%= user.admin? ? "Yes" : "No" %></td>
+          <td><%= user.hours %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

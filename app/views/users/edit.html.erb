@@ -1,0 +1,18 @@
+<%= generate_block @user.email do %>
+  <h2><%= @user.name %></h2>
+  <%= form_tag(update_user_path, :method => :put, :class => "form" ) do %>
+    <div class="field">
+      <%= label_tag :admin %>
+      <%= check_box_tag :admin, nil, @user.admin? %>
+    </div>
+    <div class="field">
+      <%= label_tag :hours %><br />
+      <%= text_field_tag :hours, @user.hours, :class => "input" %>
+    </div>
+    <br />
+    <br />
+    <div class="actions">
+      <%= submit_tag "Update Member", :class => "input", :style => "padding:0px;padding-left:5px;padding-right:5px" %>
+    </div>
+  <% end %>
+<% end %>
