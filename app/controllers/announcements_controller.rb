@@ -13,7 +13,11 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.where(:public => false).order("created_at DESC")
+    if user_signed_in?
+      @announcements = Announcement.all.order("created_at DESC")
+    else
+      @announcements = Announcement.where(:public => true).order("created_at DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
