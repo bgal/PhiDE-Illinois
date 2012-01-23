@@ -38,6 +38,12 @@
 			</ul><!-- Main Navigation End -->
 		</div><!-- Userbar End -->
 		<div class="clear"></div>
+		<% flash.each do |name, msg| %>
+      <div class="grid_12 <%= flash_name_to_class_map(name) %>">
+        <h3><%= msg %></h3>
+        <a class="hide_btn"> </a>
+      </div>
+    <% end %>
 		<!-- <div class="error grid_12"><h3>Different notification messages - .error, .warning, .success, .inforamtion </h3><a href="#" class="hide_btn">&nbsp;</a></div> --><!-- Notification -->
 		<div id="body">
 			<%= yield %>

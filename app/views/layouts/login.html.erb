@@ -10,14 +10,7 @@
 	<div id="loginbox">
 		<a href="#" id="logo">myPhiDe</a>
 		<div id="loginform">
-			<form name="login" action="cp_main.html" method="get">
-				<div id="username_field"><input type="text" name="input" placeholder="Username" class="required" value="" /></div>
-				<div id="password_field"><input type="password" name="password" placeholder="Password" class="required" value="" /></div>
-				<div id="buttonline">
-					<input type="submit" id="loginbutton" class="float_left width_4" value="Login" />
-					<a href="#" class="passforgot float_right">Forgot your password?</a>
-				</div>
-			</form>
+      <%= yield %>
 		</div>
 	</div>
 </body>

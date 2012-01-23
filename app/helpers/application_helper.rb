@@ -4,4 +4,10 @@ module ApplicationHelper
     body = '<div class="block_cont" style="display: block; ">'.html_safe+capture(&block)+'</div></div>'.html_safe
     title+body
   end
+  
+  def flash_name_to_class_map(name)
+    return "error" if name == :error
+    return "success" if name == :notice
+    return "information"
+  end
 end
