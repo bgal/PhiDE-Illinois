@@ -1,5 +1,5 @@
 <%= generate_block @event.title do %>
-  <p><%= @event.description %></p>
+  <p id="event_description"><%= @event.description %></p>
   <br />
   <%= @event.start_at %> - <%= @event.end_at %>
 <% end %>
@@ -7,3 +7,13 @@
   <div class="clear"></div>
   <%= link_to content_tag(:span, 'Edit', :class => "icon_pen"), edit_event_path(@event), :class => "navbutton" %>
 <% end %>
+<script>
+function replaceURLWithHTMLLinks(text) {
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(exp,"<a href='$1'>$1</a>"); 
+}
+$(document).ready(function(){
+  var el = $("#event_description");
+  el.html(replaceURLWithHTMLLinks(el.html()));
+});
+</script>
