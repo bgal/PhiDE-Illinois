@@ -59,13 +59,15 @@
 				<!-- <div id="avatar">
 					<img src="/assets/user.png" alt="Avatar" height="44" />
 				</div> -->
-				<div id="profileinfo">
-					<h3 id="username">Brian Gallagher</h3>
-					<span id="subline"><%= "Administrator" if current_user.admin %></span>
-					<div class="clear"></div>
-					<%= link_to "My Info", current_user_path, :class => "profilebutton" %>
-					<%= link_to "Logout", destroy_user_session_path, :class => "profilebutton", :method => :delete %>
-				</div>
+				<% if user_signed_in? %>
+  				<div id="profileinfo">
+  					<h3 id="username"><%= (current_user.name.present? ? current_user.name : current_user.email )%></h3>
+  					<span id="subline"><%= current_user.admin? ? "Administrator" : "Member" %></span>
+  					<div class="clear"></div>
+  					<%= link_to "My Info", current_user_path, :class => "profilebutton" %>
+  					<%= link_to "Logout", destroy_user_session_path, :class => "profilebutton", :method => :delete %>
+  				</div>
+  			<% end %>
 			</div>
 			<ul id="navigation"><!-- Main Navigation Begin -->
 			  <% if user_signed_in? %>

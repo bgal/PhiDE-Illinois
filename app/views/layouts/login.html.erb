@@ -5,14 +5,20 @@
 	<%= stylesheet_link_tag :application %>
 	<%= javascript_include_tag :application %>
 	<%= csrf_meta_tags %>
+	<script>
+  	$(document).ready(function(){
+  	  //  Turn off that god-awful autofill
+	    if ($.browser.webkit) {
+          $('input').attr('autocomplete', 'off');
+      }
+  	});
+	</script>
 </head>
 <body>
 	<div id="loginbox">
 		<a href="#" id="logo">myPhiDe</a>
 		<div id="loginform">
-						
-      			<%= yield %>
-
+			<%= yield %>
 		</div>
 	</div>
 </body>

@@ -4,16 +4,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
+    authorize! :read, @user
   end
 
   def edit
     @user = User.find_by_id(params[:id])
-    authorize! :update, :users
+    authorize! :update, @user
   end
   
   def update
     @user = User.find_by_id(params[:id])
-    authorize! :update, :users
+    authorize! :update, @user
     @user.admin = params[:admin]
     @user.hours = params[:hours]
     respond_to do |format|
