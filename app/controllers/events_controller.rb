@@ -80,4 +80,18 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def load
+    @events = Event.where(:start_date => Time.at(params[:start].to_i).to_date..Time.at(params[:end].to_i).to_date)
+    @ret = [ ]
+    @events.each do |event|
+      options = {:title => event.name, :start => event.start_date, :end => event.end_date }
+      options[:url] = event_path(event) if can? :manage, :events
+      options[:color] = '#FF0000' if event.mandatory
+      @ret.push(event)
+    end
+    respond_to do |format|
+      format.json { render :json => @ret }
+    end
+  end
 end

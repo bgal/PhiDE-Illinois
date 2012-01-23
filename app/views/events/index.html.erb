@@ -5,29 +5,21 @@
 <%= link_to 'New Event', new_event_path %>
 <script>
 $(document).ready(function(){
-	$('#calendar').fullCalendar({
-		events: "events/load.json",
-		eventClick: function(event) {
-			if(event.url)
-			{
-				if(event.openBox)
-				{
-					openBox(event.url,350);
-					return false;
-				}
-				else
-					return true;
-			}
-		}
-	});
-	var space = document.createElement('span');
-	space.className = "fc-header-space";
-	var new_event_button = document.createElement('span');
-	new_event_button.className = "fc-button fc-state-default fc-corner-left fc-corner-right";
-	new_event_button.setAttribute("onclick","window.location.href = '/events/new'; return false;")
-	new_event_button.innerHTML = "<span class=\"fc-button-inner\"><span class=\"fc-button-content\">new event</span><span class=\"fc-button-effect\"><span></span></span></span>";
-	$('.fc-header-right').prepend(space);
-	$('.fc-header-right').prepend(new_event_button);
-	$('.fc-content').addClass("calendar");
+  $('#calendar').fullCalendar({
+   events: "/events/load.json",
+   eventClick: function(event) {
+     if(event.url)
+          window.location.href = event.url
+   }
+  });
+  var space = document.createElement('span');
+  space.className = "fc-header-space";
+  var new_event_button = document.createElement('span');
+  new_event_button.className = "fc-button fc-state-default fc-corner-left fc-corner-right";
+  new_event_button.setAttribute("onclick","window.location.href = '/events/new'; return false;")
+  new_event_button.innerHTML = "<span class=\"fc-button-inner\"><span class=\"fc-button-content\">new event</span><span class=\"fc-button-effect\"><span></span></span></span>";
+  $('.fc-header-right').prepend(space);
+  $('.fc-header-right').prepend(new_event_button);
+  $('.fc-content').addClass("calendar");
 });
 </script>
