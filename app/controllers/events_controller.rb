@@ -88,7 +88,6 @@ class EventsController < ApplicationController
   end
   
   def load
-    authorize! :read, :events
     @events = Event.where(:start_at => Time.at(params[:start].to_i).to_date..Time.at(params[:end].to_i).to_date)
     @ret = [ ]
     @events.each do |event|
