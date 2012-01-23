@@ -1,9 +1,10 @@
 Testapp::Application.routes.draw do
-  resources :events
-
   devise_for :users
 
   resources :announcements
+  resources :events
+  
+  match 'events/load' => "events#load"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

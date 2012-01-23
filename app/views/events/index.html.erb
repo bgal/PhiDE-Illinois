@@ -1,29 +1,25 @@
-<h1>Listing events</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Start at</th>
-    <th>End at</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td><%= event.description %></td>
-    <td><%= event.start_at %></td>
-    <td><%= event.end_at %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<%= generate_block "Upcoming Events" do %>
+  <div id="calendar"></div>
 <% end %>
-</table>
-
-<br />
-
+<div class="clear"></div>
 <%= link_to 'New Event', new_event_path %>
+<script>
+$(document).ready(function(){
+  $('#calendar').fullCalendar({
+   events: "/events/load.json",
+   eventClick: function(event) {
+     if(event.url)
+          window.location.href = event.url
+   }
+  });
+  var space = document.createElement('span');
+  space.className = "fc-header-space";
+  var new_event_button = document.createElement('span');
+  new_event_button.className = "fc-button fc-state-default fc-corner-left fc-corner-right";
+  new_event_button.setAttribute("onclick","window.location.href = '/events/new'; return false;")
+  new_event_button.innerHTML = "<span class=\"fc-button-inner\"><span class=\"fc-button-content\">new event</span><span class=\"fc-button-effect\"><span></span></span></span>";
+  $('.fc-header-right').prepend(space);
+  $('.fc-header-right').prepend(new_event_button);
+  $('.fc-content').addClass("calendar");
+});
+</script>
