@@ -1,12 +1,17 @@
 <div class="announcements">
   <% @announcements.each do |announcement| %>
-  <div class="announcement">
-      <h1><%= announcement.title %></h1>
-      <small>Created by Scott on <%= announcement.created_at %></small>
-      <p><%= announcement.body %></p>
-      <%= link_to 'Show', announcement %> | <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
-  </div>
+    <%= generate_block announcement.title do %>
+      <div class="announcement">
+          <p><%= announcement.body %></p>
+          <small>Created by Scott on <%= announcement.created_at %></small>
+          <% if can? :manage, announcement %>
+            <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
-<br />
-<%= link_to 'New Announcement', new_announcement_path %>
+<% if can? :create, Announcement %>
+  <br />
+  <%= link_to 'New Announcement', new_announcement_path %>
+<% end %>
