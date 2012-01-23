@@ -1,4 +1,10 @@
 Testapp::Application.routes.draw do
+  get "users/list"
+
+  get "users/show"
+
+  get "users/edit_hours"
+
   get "user/list"
 
   get "user/show"
