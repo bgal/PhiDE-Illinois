@@ -51,6 +51,9 @@ Testapp::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  # Set the mailer host to localhost:3000
+  config.action_mailer.default_url_options = { :host => 'phideillinois.heroku.com' }
+
   # Enable threaded mode
   # config.threadsafe!
 
