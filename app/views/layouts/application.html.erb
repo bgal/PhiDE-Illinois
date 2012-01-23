@@ -55,7 +55,7 @@
 		</div><!-- Header End -->
 		<div class="clear"></div>
 		<div id="userbar"><!-- Userbar Begin -->
-			<div id="profile"><!-- Profile Begin -->
+			<div id="profile">
 				<div id="avatar">
 					<img src="/assets/user.png" alt="Avatar" height="44" />
 				</div>
@@ -66,11 +66,13 @@
 					<a href="#" class="profilebutton">Profile</a>
 					<a href="#" class="profilebutton">Logout</a>
 				</div>
-			</div><!-- Userbar End -->
+			</div>
 			<ul id="navigation"><!-- Main Navigation Begin -->
 			  <% if user_signed_in? %>
   				<li <%= is_active_tab? "announcements" %>><%= link_to "Announcements", announcements_path, :class => "icon_star" %></li>
-  				<li <%= is_active_tab? "" %>><a href="#" class="icon_stats">My Info</a></li>
+  				<% if current_user.admin? %>
+  				  <li <%= is_active_tab? "" %>><%= link_to "Edit Hours", user_list_path, :class => "icon_stats" %></li>
+  				<% end %>
   				<li <%= is_active_tab? "events" %>><%= link_to "Events", events_path ,:class => "icon_email" %></li>
   			  <li><%= link_to "Logout", destroy_user_session_path, :class => "icon_logout", :method => :delete %></li>
 			  <% else %>

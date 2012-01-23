@@ -14,7 +14,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.json
   def index
     if user_signed_in?
-      @announcements = Announcement.all.order("created_at DESC")
+      @announcements = Announcement.order("created_at DESC")
     else
       @announcements = Announcement.where(:public => true).order("created_at DESC")
     end

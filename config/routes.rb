@@ -1,7 +1,16 @@
 Testapp::Application.routes.draw do
+  get "user/list"
+
+  get "user/show"
+
+  get "user/edit_hours"
+
   devise_for :users
 
   match 'events/load(.:format)' => "events#load"
+  match 'users/list' => "users#list", :as => "user_list"
+  match 'user' => "users#show", :as => "current_user"
+  match 'users/:id/hours/edit' => "users#edit_hours", :as => "edit_user_hours"
 
   resources :announcements
   resources :events
