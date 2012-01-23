@@ -2,7 +2,7 @@ class AnnouncementsController < ApplicationController
   skip_before_filter :authenticate_user!, :only => :public
   
   def public
-    @announcements = Announcement.where(:public => true)
+    @announcements = Announcement.where(:public => true).order("created_at DESC")
     
     respond_to do |format|
       format.html # public_announcements.html.erb
@@ -13,7 +13,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.where(:public => false)
+    @announcements = Announcement.where(:public => false).order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -56,7 +56,8 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to @announcement, :notice => 'Announcement was successfully created.' }
+        path = (@announcement.public ? root_path : announcements_path)
+        format.html { redirect_to path, :notice => 'Announcement was successfully created.' }
         format.json { render :json => @announcement, :status => :created, :location => @announcement }
       else
         format.html { render :action => "new" }
@@ -72,7 +73,8 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       if @announcement.update_attributes(params[:announcement])
-        format.html { redirect_to @announcement, :notice => 'Announcement was successfully updated.' }
+        path = (@announcement.public ? root_path : announcements_path)
+        format.html { redirect_to path, :notice => 'Announcement was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -85,10 +87,11 @@ class AnnouncementsController < ApplicationController
   # DELETE /announcements/1.json
   def destroy
     @announcement = Announcement.find(params[:id])
+    path = (@announcement.public ? root_path : announcements_path)  
     @announcement.destroy
 
     respond_to do |format|
-      format.html { redirect_to announcements_url }
+      format.html { redirect_to path }
       format.json { head :no_content }
     end
   end

@@ -1,4 +1,4 @@
-<%= form_for(@announcement) do |f| %>
+<%= form_for(@announcement, :html => {:class => "form"}) do |f| %>
   <% if @announcement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :title, :class => "label" %>
+    <%= f.text_field :title, :class => "input" %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.label :body, :class => "label" %>
+    <%= f.text_area :body, :class => "input", :style => "height:65px;" %>
   </div>
   <div class="field">
-    <%= f.label :public %><br />
-    <%= f.check_box :public %>
+    <%= f.label :public, "Public (Public announcements will be viewable by everyone. Private announcements will require a login)", :class => "label" %>
+    <%= f.check_box :public, :class => "input" %> 
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, :class => "input", :style => "padding:0px;padding-left:5px;padding-right:5px" %>
   </div>
 <% end %>
