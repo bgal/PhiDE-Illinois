@@ -65,7 +65,7 @@
   					<span id="subline"><%= current_user.admin? ? "Administrator" : "Member" %></span>
   					<div class="clear"></div>
   					<%= link_to "My Info", current_user_path, :class => "profilebutton" %>
-  				
+  					<%= link_to "Logout", destroy_user_session_path, :class => "profilebutton", :method => :delete %>
   				</div>
   			<% end %>
 			</div>
