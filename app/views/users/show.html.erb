@@ -1,4 +1,5 @@
 <%= generate_block @user.email do %>
   <p><b>Member Since:</b> <%= @user.created_at.strftime("%m-%d-%Y") %></p>
   <p><b>Service Hours Completed:</b> <%= @user.hours %></p>
+  <p><b>Mandatory Events Completed:</b> <%= @user.mandatory_events %></p>
 <% end %>

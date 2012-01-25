@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
     @user.admin = params[:admin]
     @user.hours = params[:hours]
+    @user.mandatory_events = params[:mandatory_events]
     respond_to do |format|
       if @user.save
         format.html { redirect_to user_list_path, :notice => "User has been successfully updated" }

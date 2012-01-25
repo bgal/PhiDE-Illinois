@@ -1,5 +1,17 @@
 <%= generate_block @user.email do %>
   <h2><%= @user.name %></h2>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form_tag(update_user_path, :method => :put, :class => "form" ) do %>
     <div class="field">
       <%= label_tag :admin %>
@@ -8,6 +20,10 @@
     <div class="field">
       <%= label_tag :hours %><br />
       <%= text_field_tag :hours, @user.hours, :class => "input" %>
+    </div>
+	<div class="field">
+      <%= label_tag :mandatory_events %><br />
+      <%= text_field_tag :mandatory_events, @user.mandatory_events, :class => "input" %>
     </div>
     <br />
     <br />

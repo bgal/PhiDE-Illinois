@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123064124) do
+ActiveRecord::Schema.define(:version => 20120125053121) do
 
   create_table "announcements", :force => true do |t|
     t.string   "title"
@@ -26,9 +26,12 @@ ActiveRecord::Schema.define(:version => 20120123064124) do
     t.text     "description"
     t.date     "start_at"
     t.date     "end_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.boolean  "mandatory"
+    t.boolean  "service_event"
+    t.boolean  "socail"
+    t.boolean  "social"
   end
 
   create_table "users", :force => true do |t|
@@ -47,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20120123064124) do
     t.boolean  "admin"
     t.string   "name"
     t.integer  "hours",                                 :default => 0
+    t.integer  "mandatory_hours"
+    t.integer  "mandatory_events"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

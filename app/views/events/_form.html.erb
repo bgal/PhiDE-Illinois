@@ -27,10 +27,24 @@
     <%= f.label :end_at %>
     <%= f.text_field :end_at, :class => "input datepicker" %>
   </div>
+<p>Choose one of the following attributes:</p>
   <div class="field">
     <%= f.label :mandatory, :class => "label" %>
     <%= f.check_box :mandatory, :class => "input" %> 
   </div>
+  <div class="field">
+    <%= f.label :service_event, :class => "label" %>
+    <%= f.check_box :service_event, :class => "input" %> 
+  </div>
+  <div class="field">
+    <%= f.label :social, :class => "label" %>
+    <%= f.check_box :social, :class => "input" %> 
+  </div>
+
+  <div class="actions">
+    <%= link_to 'Delete Event', @event, :confirm => 'Are you sure?', :method => :delete %>
+  </div><br />
+
   <div class="actions">
     <%= f.submit nil, :class => "input", :style => "padding:0px;padding-left:5px;padding-right:5px" %>
   </div>

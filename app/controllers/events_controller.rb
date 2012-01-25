@@ -93,6 +93,9 @@ class EventsController < ApplicationController
     @events.each do |event|
       options = {:title => event.title, :start => event.start_at, :end => event.end_at, :url => event_path(event) }
       options[:color] = '#FF0000' if event.mandatory
+      options[:color] = '#0000FF' if event.service_event
+      options[:color] = '#FFA500' if event.social
+      
       @ret.push(options)
     end
     respond_to do |format|
