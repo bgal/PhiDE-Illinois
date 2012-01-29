@@ -1,3 +1,3 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :title, :start_at, :end_at
+  validates_presence_of :title
 end
