@@ -11,17 +11,6 @@
     </div>
   <% end %>
 
- <script type="text/javascript>
-
-	$(function() {
-		$( "#datepicker" ).datepicker();
-		$( "#format" ).change(function() {
-			$( "#datepicker" ).datepicker( "option", "dateFormat",yy-mm-dd );
-		});
-	});
-	
- </script>
-
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, :class => "input" %>
