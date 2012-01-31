@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+ <script type="text/javascript>
+
+	$(function() {
+		$( "#datepicker" ).datepicker();
+		$( "#format" ).change(function() {
+			$( "#datepicker" ).datepicker( "option", "dateFormat",yy-mm-dd );
+		});
+	});
+	
+ </script>
+
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, :class => "input" %>
@@ -42,7 +53,7 @@
     <%= f.check_box :social, :class => "input" %> 
   </div>
 
-  <div class="actions">
+ <div class="actions">
     <%= link_to 'Delete Event', @event, :confirm => 'Are you sure?', :method => :delete %>
   </div><br />
 
