@@ -43,9 +43,11 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    logger.debug("==========")
+    logger.debug(params[:event])
     @event = Event.new(params[:event])
     authorize! :create, @event
-    
+    logger.debug("Month " + @event.start_at.month.to_s)
     respond_to do |format|
       if @event.save
         format.html { redirect_to events_path, :notice => 'Event was successfully created.' }
