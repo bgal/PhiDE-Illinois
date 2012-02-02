@@ -1,7 +1,7 @@
 <%= generate_block @event.title do %>
   <p id="event_description"><%= @event.description %></p>
   <br />
-  <%= @event.start_at %> - <%= @event.end_at %>
+  <%= @event.start_at.strftime("%b %d, %Y") %> - <%= @event.end_at.strftime("%b %d, %Y") %>
 <% end %>
 <% if can? :manage, @event %>
   <div class="clear"></div>
