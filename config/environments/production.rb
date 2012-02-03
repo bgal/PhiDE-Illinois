@@ -53,6 +53,14 @@ Testapp::Application.configure do
 
   # Set the mailer host to localhost:3000
   config.action_mailer.default_url_options = { :host => 'phideillinois.heroku.com' }
+  ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => ENV['app2576834@heroku.com'],
+    :password       => ENV['9ox3w2fj'],
+    :domain         => ENV['phideillinois.heorkuapp.com']
+  }
 
   # Enable threaded mode
   # config.threadsafe!
