@@ -8,7 +8,7 @@
       <%= generate_block announcement.title do %>
         <div class="announcement">
             <p><%= announcement.body %></p>
-            <small>Created by <%= user.name unless announcement.user.nil? %> on <%= announcement.created_at.strftime("%b %d %Y") %></small>
+            <small>Created by <%= announcement.user.name unless announcement.user.nil? %> on <%= announcement.created_at.strftime("%b %d %Y") %></small>
             <% if can? :manage, announcement %>
               <%= link_to 'Edit', edit_announcement_path(announcement) %> | <%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %>
             <% end %>
