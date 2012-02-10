@@ -1,0 +1,12 @@
+Important database updates. 
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   db/migrate/20120124033145_add_mandatory_hours_to_users.rb
+#	new file:   db/migrate/20120124034157_add_mandatory_events_to_users.rb
+#	new file:   db/migrate/20120125052158_add_service_event_to_events.rb
+#	new file:   db/migrate/20120125053121_add_social_to_events.rb
+#
